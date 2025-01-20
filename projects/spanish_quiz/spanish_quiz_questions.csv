@@ -1,0 +1,101 @@
+Lesson,Theme,Question,Correct Answer
+Lesson 1,Basic Greetings,"Hola, ¿cómo estás?","Hello, how are you?"
+Lesson 1,Basic Greetings,¿Cómo te llamas?,What is your name?
+Lesson 1,Basic Greetings,Buenos días,Good morning
+Lesson 1,Basic Greetings,Buenas tardes,Good afternoon
+Lesson 1,Basic Greetings,Buenas noches,Good night
+Lesson 2,Basic Introductions,Me llamo [name].,My name is [name].
+Lesson 2,Basic Introductions,Tengo [age] años.,I am [age] years old.
+Lesson 2,Basic Introductions,Soy de [place].,I am from [place].
+Lesson 2,Basic Introductions,Mucho gusto.,Nice to meet you.
+Lesson 2,Basic Introductions,¿Cómo está usted?,How are you (formal)?
+Lesson 3,Simple Present Tense,Yo como una manzana.,I eat an apple.
+Lesson 3,Simple Present Tense,Ella lee un libro.,She reads a book.
+Lesson 3,Simple Present Tense,Nosotros jugamos fútbol.,We play soccer.
+Lesson 3,Simple Present Tense,Él escribe una carta.,He writes a letter.
+Lesson 3,Simple Present Tense,Ellos hablan español.,They speak Spanish.
+Lesson 4,Describing Things,El cielo es azul.,The sky is blue.
+Lesson 4,Describing Things,El carro es rojo.,The car is red.
+Lesson 4,Describing Things,La casa es grande.,The house is big.
+Lesson 4,Describing Things,El perro es pequeño.,The dog is small.
+Lesson 4,Describing Things,La flor es amarilla.,The flower is yellow.
+Lesson 5,Basic Questions,¿Qué hora es?,What time is it?
+Lesson 5,Basic Questions,¿Dónde está el baño?,Where is the bathroom?
+Lesson 5,Basic Questions,¿Cuánto cuesta?,How much does it cost?
+Lesson 5,Basic Questions,¿Qué día es hoy?,What day is today?
+Lesson 5,Basic Questions,¿Por qué?,Why?
+Lesson 6,Food and Drink,Quiero un café.,I want a coffee.
+Lesson 6,Food and Drink,Necesito agua.,I need water.
+Lesson 6,Food and Drink,Comemos pizza.,We eat pizza.
+Lesson 6,Food and Drink,Me gusta el helado.,I like ice cream.
+Lesson 6,Food and Drink,¿Tienes hambre?,Are you hungry?
+Lesson 7,Family,Mi madre es amable.,My mother is kind.
+Lesson 7,Family,Mi padre trabaja mucho.,My father works a lot.
+Lesson 7,Family,Tengo un hermano.,I have a brother.
+Lesson 7,Family,Ella es mi hermana.,She is my sister.
+Lesson 7,Family,Amo a mi familia.,I love my family.
+Lesson 8,Colors and Numbers,¿De qué color es?,What color is it?
+Lesson 8,Colors and Numbers,Es rojo.,It is red.
+Lesson 8,Colors and Numbers,"Uno, dos, tres.","One, two, three."
+Lesson 8,Colors and Numbers,Tengo cinco amigos.,I have five friends.
+Lesson 8,Colors and Numbers,Veo siete pájaros.,I see seven birds.
+Lesson 9,Days and Months,Hoy es lunes.,Today is Monday.
+Lesson 9,Days and Months,Mañana es martes.,Tomorrow is Tuesday.
+Lesson 9,Days and Months,Estamos en mayo.,We are in May.
+Lesson 9,Days and Months,Mi cumpleaños es en diciembre.,My birthday is in December.
+Lesson 9,Days and Months,¿Qué mes es?,What month is it?
+Lesson 10,Time and Weather,Hace calor.,It's hot.
+Lesson 10,Time and Weather,Hace frío.,It's cold.
+Lesson 10,Time and Weather,Está lloviendo.,It's raining.
+Lesson 10,Time and Weather,Son las tres.,It's three o'clock.
+Lesson 10,Time and Weather,¿Qué tiempo hace?,What's the weather like?
+Lesson 11,Places,Vamos al parque.,Let's go to the park.
+Lesson 11,Places,Estoy en casa.,I am at home.
+Lesson 11,Places,La escuela está cerca.,The school is near.
+Lesson 11,Places,El supermercado está lejos.,The supermarket is far.
+Lesson 11,Places,¿Dónde está la biblioteca?,Where is the library?
+Lesson 12,Hobbies and Activities,Me gusta leer libros.,I like to read books.
+Lesson 12,Hobbies and Activities,A él le gusta cantar.,He likes to sing.
+Lesson 12,Hobbies and Activities,Ellos bailan salsa.,They dance salsa.
+Lesson 12,Hobbies and Activities,Nosotros jugamos videojuegos.,We play video games.
+Lesson 12,Hobbies and Activities,¿Qué te gusta hacer?,What do you like to do?
+Lesson 13,Describing Feelings,Estoy feliz.,I am happy.
+Lesson 13,Describing Feelings,Estoy triste.,I am sad.
+Lesson 13,Describing Feelings,Estoy cansado.,I am tired.
+Lesson 13,Describing Feelings,Estoy emocionado.,I am excited.
+Lesson 13,Describing Feelings,Tengo miedo.,I am scared.
+Lesson 14,Simple Past Tense,Ayer comí pizza.,Yesterday I ate pizza.
+Lesson 14,Simple Past Tense,Fui al cine.,I went to the cinema.
+Lesson 14,Simple Past Tense,Ella leyó un libro.,She read a book.
+Lesson 14,Simple Past Tense,Nosotros jugamos fútbol.,We played soccer.
+Lesson 14,Simple Past Tense,Ellos vieron la tele.,They watched TV.
+Lesson 15,Future Tense,Voy a viajar mañana.,I am going to travel tomorrow.
+Lesson 15,Future Tense,Él va a estudiar.,He is going to study.
+Lesson 15,Future Tense,Vamos a comer en el restaurante.,We are going to eat at the restaurant.
+Lesson 15,Future Tense,Ellas van a bailar.,They are going to dance.
+Lesson 15,Future Tense,¿Qué vas a hacer?,What are you going to do?
+Lesson 16,Making Requests,"Por favor, ayúdame.","Please, help me."
+Lesson 16,Making Requests,¿Puedes darme agua?,Can you give me water?
+Lesson 16,Making Requests,"Necesito un bolígrafo, por favor.","I need a pen, please."
+Lesson 16,Making Requests,Quiero un poco de pan.,I want some bread.
+Lesson 16,Making Requests,¿Me puedes decir la hora?,Can you tell me the time?
+Lesson 17,Giving Directions,Gira a la derecha.,Turn right.
+Lesson 17,Giving Directions,Sigue recto.,Go straight.
+Lesson 17,Giving Directions,Gira a la izquierda.,Turn left.
+Lesson 17,Giving Directions,Está cerca de aquí.,It is near here.
+Lesson 17,Giving Directions,Está lejos de aquí.,It is far from here.
+Lesson 18,Opinions and Preferences,Creo que es bueno.,I think it's good.
+Lesson 18,Opinions and Preferences,Prefiero el té al café.,I prefer tea to coffee.
+Lesson 18,Opinions and Preferences,Me encanta la playa.,I love the beach.
+Lesson 18,Opinions and Preferences,No me gusta el frío.,I don't like the cold.
+Lesson 18,Opinions and Preferences,¿Qué opinas?,What do you think?
+Lesson 19,More Complex Sentences,"Si tuviera tiempo, viajaría.","If I had time, I would travel."
+Lesson 19,More Complex Sentences,Es importante estudiar.,It is important to study.
+Lesson 19,More Complex Sentences,"Aunque está lloviendo, vamos.","Even though it's raining, let's go."
+Lesson 19,More Complex Sentences,"Después de comer, leeré.","After eating, I will read."
+Lesson 19,More Complex Sentences,"Mientras estudiamos, escuchamos música.","While we study, we listen to music."
+Lesson 20,Abstract Concepts,La paciencia es una virtud.,Patience is a virtue.
+Lesson 20,Abstract Concepts,El amor es importante.,Love is important.
+Lesson 20,Abstract Concepts,La libertad es valiosa.,Freedom is valuable.
+Lesson 20,Abstract Concepts,El tiempo es oro.,Time is gold.
+Lesson 20,Abstract Concepts,La felicidad es un estado mental.,Happiness is a state of mind.

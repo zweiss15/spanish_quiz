@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spanish Quiz</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f9f9f9;
+        }
+        .quiz-container {
+            max-width: 800px;
+            margin: auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+        }
+        .question {
+            margin: 20px 0;
+        }
+        .options {
+            margin: 10px 0;
+        }
+        .options button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid #ccc;
+            background-color: #f0f0f0;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .options button:hover {
+            background-color: #e0e0e0;
+        }
+        .result {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 1.2em;
+        }
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+        .navigation button {
+            padding: 10px 20px;
+            border: none;
+            background-color: #007BFF;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .navigation button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="quiz-container">
+        <h1>Spanish Quiz</h1>
+        <div id="quiz"></div>
+        <div class="navigation">
+            <button id="prev" onclick="navigate(-1)">Previous</button>
+            <button id="next" onclick="navigate(1)">Next</button>
+        </div>
+        <div class="result" id="result"></div>
+    </div>
+
+    <script>
+        const themes = {
+            "Basic Greetings": [
+                { question: "Hola, ¿cómo estás?", correctAnswer: "Hello, how are you?", incorrectAnswer: "Good morning" },
+                { question: "¿Cómo te llamas?", correctAnswer: "What is your name?", incorrectAnswer: "Where are you from?" },
+                { question: "Buenos días", correctAnswer: "Good morning", incorrectAnswer: "Good night" },
+                { question: "Buenas tardes", correctAnswer: "Good afternoon", incorrectAnswer: "Good evening" },
+                { question: "Buenas noches", correctAnswer: "Good night", incorrectAnswer: "Good morning" },
+            ],
+            "Basic Introductions": [
+                { question: "Me llamo [name]", correctAnswer: "My name is [name].", incorrectAnswer: "I am from [place]." },
+                { question: "Tengo [age] años.", correctAnswer: "I am [age] years old.", incorrectAnswer: "I am happy." },
+                { question: "Soy de [place]", correctAnswer: "I am from [place].", incorrectAnswer: "I am tired." },
+                { question: "Mucho gusto.", correctAnswer: "Nice to meet you.", incorrectAnswer: "See you soon." },
+                { question: "¿Cómo está usted?", correctAnswer: "How are you (formal)?", incorrectAnswer: "What is your name?" },
+            ],
+            "Simple Present Tense": [
+                { question: "Yo como una manzana.", correctAnswer: "I eat an apple.", incorrectAnswer: "I drink water." },
+                { question: "Ella lee un libro.", correctAnswer: "She reads a book.", incorrectAnswer: "She writes a letter." },
+                { question: "Nosotros jugamos fútbol.", correctAnswer: "We play soccer.", incorrectAnswer: "We play tennis." },
+                { question: "Él escribe una carta.", correctAnswer: "He writes a letter.", incorrectAnswer: "He reads a book." },
+                { question: "Ellos hablan español.", correctAnswer: "They speak Spanish.", incorrectAnswer: "They eat pizza." },
+            ],
+            "Describing Things": [
+                { question: "El cielo es azul.", correctAnswer: "The sky is blue.", incorrectAnswer: "The car is red." },
+                { question: "El carro es rojo.", correctAnswer: "The car is red.", incorrectAnswer: "The flower is yellow." },
+                { question: "La casa es grande.", correctAnswer: "The house is big.", incorrectAnswer: "The dog is small." },
+                { question: "El perro es pequeño.", correctAnswer: "The dog is small.", incorrectAnswer: "The house is big." },
+                { question: "La flor es amarilla.", correctAnswer: "The flower is yellow.", incorrectAnswer: "The sky is blue." },
+            ],
+            "Basic Questions": [
+                { question: "¿Qué hora es?", correctAnswer: "What time is it?", incorrectAnswer: "What day is it?" },
+                { question: "¿Dónde está el baño?", correctAnswer: "Where is the bathroom?", incorrectAnswer: "Where is the library?" },
+                { question: "¿Cuánto cuesta?", correctAnswer: "How much does it cost?", incorrectAnswer: "How old are you?" },
+                { question: "¿Qué día es hoy?", correctAnswer: "What day is today?", incorrectAnswer: "What time is it?" },
+                { question: "¿Por qué?", correctAnswer: "Why?", incorrectAnswer: "How?" },
+            ],
+            "Food and Drink": [
+                { question: "Quiero un café.", correctAnswer: "I want a coffee.", incorrectAnswer: "I want tea." },
+                { question: "Necesito agua.", correctAnswer: "I need water.", incorrectAnswer: "I need coffee." },
+                { question: "Comemos pizza.", correctAnswer: "We eat pizza.", incorrectAnswer: "We eat sandwiches." },
+                { question: "Me gusta el helado.", correctAnswer: "I like ice cream.", incorrectAnswer: "I like cake." },
+                { question: "¿Tienes hambre?", correctAnswer: "Are you hungry?", incorrectAnswer: "Are you thirsty?" },
+            ]
+        };
+
+        let currentThemeIndex = 0;
+        const themeKeys = Object.keys(themes);
+
+        function renderQuiz() {
+            const quizContainer = document.getElementById('quiz');
+            quizContainer.innerHTML = '';
+
+            const themeName = themeKeys[currentThemeIndex];
+            const questions = themes[themeName];
+
+            const themeTitle = document.createElement('h2');
+            themeTitle.textContent = themeName;
+            quizContainer.appendChild(themeTitle);
+
+            questions.forEach((item, index) => {
+                const questionDiv = document.createElement('div');
+                questionDiv.className = 'question';
+                questionDiv.innerHTML = `<strong>Question ${index + 1}:</strong> ${item.question}`;
+
+                const optionsDiv = document.createElement('div');
+                optionsDiv.className = 'options';
+
+                const correctButton = document.createElement('button');
+                correctButton.textContent = item.correctAnswer;
+                correctButton.onclick = () => showResult(true);
+
+                const incorrectButton = document.createElement('button');
+                incorrectButton.textContent = item.incorrectAnswer;
+                incorrectButton.onclick = () => showResult(false);
+
+                Math.random() > 0.5
+                    ? optionsDiv.append(correctButton, incorrectButton)
+                    : optionsDiv.append(incorrectButton, correctButton);
+
+                questionDiv.appendChild(optionsDiv);
+                quizContainer.appendChild(questionDiv);
+            });
+        }
+
+        function showResult(isCorrect) {
+            const resultDiv = document.getElementById('result');
+            resultDiv.textContent = isCorrect ? 'Correct!' : 'Wrong, try again!';
+        }
+
+        function navigate(direction) {
+            currentThemeIndex += direction;
+
+            if (currentThemeIndex < 0) {
+                currentThemeIndex = themeKeys.length - 1;
+            } else if (currentThemeIndex >= themeKeys.length) {
+                currentThemeIndex = 0;
+            }
+
+            renderQuiz();
+        }
+
+        // Initialize the quiz
+        renderQuiz();
+    </script>
+</body>
+</html>
