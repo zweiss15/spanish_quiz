@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Spanish Quiz</title>
+    <title>Language Quiz</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -61,11 +61,27 @@
         .navigation button:hover {
             background-color: #0056b3;
         }
+        .language-selector {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .language-selector select {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
     </style>
 </head>
 <body>
     <div class="quiz-container">
-        <h1>Spanish Quiz</h1>
+        <h1>Language Quiz</h1>
+        <div class="language-selector">
+            <label for="language">Select Language: </label>
+            <select id="language" onchange="changeLanguage()">
+                <option value="spanish">Spanish</option>
+                <option value="french">French</option>
+            </select>
+        </div>
         <div id="quiz"></div>
         <div class="navigation">
             <button id="prev" onclick="navigate(-1)">Previous</button>
@@ -76,73 +92,98 @@
 
     <script>
         const themes = {
-            "Basic Greetings": [
-                { question: "Hola, ¿cómo estás?", correctAnswer: "Hello, how are you?", incorrectAnswer: "Good morning" },
-                { question: "¿Cómo te llamas?", correctAnswer: "What is your name?", incorrectAnswer: "Where are you from?" },
-                { question: "Buenos días", correctAnswer: "Good morning", incorrectAnswer: "Good night" },
-                { question: "Buenas tardes", correctAnswer: "Good afternoon", incorrectAnswer: "Good evening" },
-                { question: "Buenas noches", correctAnswer: "Good night", incorrectAnswer: "Good morning" },
+            spanish: {
+                "Basic Greetings #1": [
+                    { question: "Hola, ¿cómo estás?", correctAnswer: "Hello, how are you?", incorrectAnswer: "Good morning" },
+                    { question: "¿Cómo te llamas?", correctAnswer: "What is your name?", incorrectAnswer: "Where are you from?" },
+                    { question: "Buenos días", correctAnswer: "Good morning", incorrectAnswer: "Good night" },
+                    { question: "Buenas tardes", correctAnswer: "Good afternoon", incorrectAnswer: "Good evening" },
+                    { question: "Buenas noches", correctAnswer: "Good night", incorrectAnswer: "Good morning" },
+                ],
+                "Basic Introductions #2": [
+                    { question: "Me llamo [name]", correctAnswer: "My name is [name].", incorrectAnswer: "I am from [place]." },
+                    { question: "Tengo [age] años.", correctAnswer: "I am [age] years old.", incorrectAnswer: "I am happy." },
+                    { question: "Soy de [place]", correctAnswer: "I am from [place].", incorrectAnswer: "I am tired." },
+                    { question: "Mucho gusto.", correctAnswer: "Nice to meet you.", incorrectAnswer: "See you soon." },
+                    { question: "¿Cómo está usted?", correctAnswer: "How are you (formal)?", incorrectAnswer: "What is your name?" },
+                ],
+                "Simple Present Tense #3": [
+                    { question: "Yo como una manzana.", correctAnswer: "I eat an apple.", incorrectAnswer: "I drink water." },
+                    { question: "Ella lee un libro.", correctAnswer: "She reads a book.", incorrectAnswer: "She writes a letter." },
+                    { question: "Nosotros jugamos fútbol.", correctAnswer: "We play soccer.", incorrectAnswer: "We play tennis." },
+                    { question: "Él escribe una carta.", correctAnswer: "He writes a letter.", incorrectAnswer: "He reads a book." },
+                    { question: "Ellos hablan español.", correctAnswer: "They speak Spanish.", incorrectAnswer: "They eat pizza." },
+                ],
+                "Describing Things #4": [
+                    { question: "El cielo es azul.", correctAnswer: "The sky is blue.", incorrectAnswer: "The car is red." },
+                    { question: "El carro es rojo.", correctAnswer: "The car is red.", incorrectAnswer: "The flower is yellow." },
+                    { question: "La casa es grande.", correctAnswer: "The house is big.", incorrectAnswer: "The dog is small." },
+                    { question: "El perro es pequeño.", correctAnswer: "The dog is small.", incorrectAnswer: "The house is big." },
+                    { question: "La flor es amarilla.", correctAnswer: "The flower is yellow.", incorrectAnswer: "The sky is blue." },
+                ],
+                "Basic Questions #5": [
+                    { question: "¿Qué hora es?", correctAnswer: "What time is it?", incorrectAnswer: "What day is it?" },
+                    { question: "¿Dónde está el baño?", correctAnswer: "Where is the bathroom?", incorrectAnswer: "Where is the library?" },
+                    { question: "¿Cuánto cuesta?", correctAnswer: "How much does it cost?", incorrectAnswer: "How old are you?" },
+                    { question: "¿Qué día es hoy?", correctAnswer: "What day is today?", incorrectAnswer: "What time is it?" },
+                    { question: "¿Por qué?", correctAnswer: "Why?", incorrectAnswer: "How?" },
+                ],
+                "Food and Drink #6": [
+                    { question: "Quiero un café.", correctAnswer: "I want a coffee.", incorrectAnswer: "I want tea." },
+                    { question: "Necesito agua.", correctAnswer: "I need water.", incorrectAnswer: "I need coffee." },
+                    { question: "Comemos pizza.", correctAnswer: "We eat pizza.", incorrectAnswer: "We eat sandwiches." },
+                    { question: "Me gusta el helado.", correctAnswer: "I like ice cream.", incorrectAnswer: "I like cake." },
+                    { question: "¿Tienes hambre?", correctAnswer: "Are you hungry?", incorrectAnswer: "Are you thirsty?" },
+                ],
+                // Additional lessons would continue here up to #20
+            french: {
+            "Basic Greetings #1": [
+                { question: "Bonjour, comment ça va?", correctAnswer: "Hello, how are you?", incorrectAnswer: "Good night" },
+                { question: "Comment t'appelles-tu?", correctAnswer: "What is your name?", incorrectAnswer: "Where are you from?" },
+                { question: "Bonjour", correctAnswer: "Good morning", incorrectAnswer: "Good evening" },
+                { question: "Bonsoir", correctAnswer: "Good evening", incorrectAnswer: "Good morning" },
+                { question: "Bonne nuit", correctAnswer: "Good night", incorrectAnswer: "Good afternoon" },
             ],
-            "Basic Introductions": [
-                { question: "Me llamo [name]", correctAnswer: "My name is [name].", incorrectAnswer: "I am from [place]." },
-                { question: "Tengo [age] años.", correctAnswer: "I am [age] years old.", incorrectAnswer: "I am happy." },
-                { question: "Soy de [place]", correctAnswer: "I am from [place].", incorrectAnswer: "I am tired." },
-                { question: "Mucho gusto.", correctAnswer: "Nice to meet you.", incorrectAnswer: "See you soon." },
-                { question: "¿Cómo está usted?", correctAnswer: "How are you (formal)?", incorrectAnswer: "What is your name?" },
+            "Basic Introductions #2": [
+                { question: "Je m'appelle [name]", correctAnswer: "My name is [name].", incorrectAnswer: "I am happy." },
+                { question: "J'ai [age] ans.", correctAnswer: "I am [age] years old.", incorrectAnswer: "I like reading." },
+                { question: "Je viens de [place]", correctAnswer: "I am from [place].", incorrectAnswer: "I am from the park." },
+                { question: "Enchanté.", correctAnswer: "Nice to meet you.", incorrectAnswer: "See you soon." },
+                { question: "Comment allez-vous?", correctAnswer: "How are you (formal)?", incorrectAnswer: "What is your name?" },
             ],
-            "Simple Present Tense": [
-                { question: "Yo como una manzana.", correctAnswer: "I eat an apple.", incorrectAnswer: "I drink water." },
-                { question: "Ella lee un libro.", correctAnswer: "She reads a book.", incorrectAnswer: "She writes a letter." },
-                { question: "Nosotros jugamos fútbol.", correctAnswer: "We play soccer.", incorrectAnswer: "We play tennis." },
-                { question: "Él escribe una carta.", correctAnswer: "He writes a letter.", incorrectAnswer: "He reads a book." },
-                { question: "Ellos hablan español.", correctAnswer: "They speak Spanish.", incorrectAnswer: "They eat pizza." },
+            "Simple Present Tense #3": [
+                { question: "Je mange une pomme.", correctAnswer: "I eat an apple.", incorrectAnswer: "I drink juice." },
+                { question: "Elle lit un livre.", correctAnswer: "She reads a book.", incorrectAnswer: "She writes a letter." },
+                { question: "Nous jouons au football.", correctAnswer: "We play soccer.", incorrectAnswer: "We watch movies." },
+                { question: "Il écrit une lettre.", correctAnswer: "He writes a letter.", incorrectAnswer: "He drinks water." },
+                { question: "Ils parlent français.", correctAnswer: "They speak French.", incorrectAnswer: "They eat bread." },
             ],
-            "Describing Things": [
-                { question: "El cielo es azul.", correctAnswer: "The sky is blue.", incorrectAnswer: "The car is red." },
-                { question: "El carro es rojo.", correctAnswer: "The car is red.", incorrectAnswer: "The flower is yellow." },
-                { question: "La casa es grande.", correctAnswer: "The house is big.", incorrectAnswer: "The dog is small." },
-                { question: "El perro es pequeño.", correctAnswer: "The dog is small.", incorrectAnswer: "The house is big." },
-                { question: "La flor es amarilla.", correctAnswer: "The flower is yellow.", incorrectAnswer: "The sky is blue." },
-            ],
-            "Basic Questions": [
-                { question: "¿Qué hora es?", correctAnswer: "What time is it?", incorrectAnswer: "What day is it?" },
-                { question: "¿Dónde está el baño?", correctAnswer: "Where is the bathroom?", incorrectAnswer: "Where is the library?" },
-                { question: "¿Cuánto cuesta?", correctAnswer: "How much does it cost?", incorrectAnswer: "How old are you?" },
-                { question: "¿Qué día es hoy?", correctAnswer: "What day is today?", incorrectAnswer: "What time is it?" },
-                { question: "¿Por qué?", correctAnswer: "Why?", incorrectAnswer: "How?" },
-            ],
-            "Food and Drink": [
-                { question: "Quiero un café.", correctAnswer: "I want a coffee.", incorrectAnswer: "I want tea." },
-                { question: "Necesito agua.", correctAnswer: "I need water.", incorrectAnswer: "I need coffee." },
-                { question: "Comemos pizza.", correctAnswer: "We eat pizza.", incorrectAnswer: "We eat sandwiches." },
-                { question: "Me gusta el helado.", correctAnswer: "I like ice cream.", incorrectAnswer: "I like cake." },
-                { question: "¿Tienes hambre?", correctAnswer: "Are you hungry?", incorrectAnswer: "Are you thirsty?" },
-            ],
-            "Family": [
-                { question: "Mi madre es amable.", correctAnswer: "My mother is kind.", incorrectAnswer: "My father is lazy." },
-                { question: "Mi padre trabaja mucho.", correctAnswer: "My father works a lot.", incorrectAnswer: "My sister works a lot." },
-                { question: "Tengo un hermano.", correctAnswer: "I have a brother.", incorrectAnswer: "I have a cousin." },
-                { question: "Ella es mi hermana.", correctAnswer: "She is my sister.", incorrectAnswer: "She is my friend." },
-                { question: "Amo a mi familia.", correctAnswer: "I love my family.", incorrectAnswer: "I love my school." },
-            ],
-            "Colors and Numbers": [
-                { question: "¿De qué color es?", correctAnswer: "What color is it?", incorrectAnswer: "What size is it?" },
-                { question: "Es rojo.", correctAnswer: "It is red.", incorrectAnswer: "It is blue." },
-                { question: "Uno, dos, tres.", correctAnswer: "One, two, three.", incorrectAnswer: "Four, five, six." },
-                { question: "Tengo cinco amigos.", correctAnswer: "I have five friends.", incorrectAnswer: "I have ten friends." },
-                { question: "Veo siete pájaros.", correctAnswer: "I see seven birds.", incorrectAnswer: "I see two birds." },
+            "Describing Things #4": [
+                { question: "Le ciel est bleu.", correctAnswer: "The sky is blue.", incorrectAnswer: "The car is red." },
+                { question: "La voiture est rouge.", correctAnswer: "The car is red.", incorrectAnswer: "The flower is yellow." },
+                { question: "La maison est grande.", correctAnswer: "The house is big.", incorrectAnswer: "The dog is small." },
+                { question: "Le chien est petit.", correctAnswer: "The dog is small.", incorrectAnswer: "The house is big." },
+                { question: "La fleur est jaune.", correctAnswer: "The flower is yellow.", incorrectAnswer: "The sky is blue." },
             ]
+            }
         };
 
         let currentThemeIndex = 0;
-        const themeKeys = Object.keys(themes);
+        let currentLanguage = 'spanish';
+
+        function changeLanguage() {
+            currentLanguage = document.getElementById('language').value;
+            currentThemeIndex = 0; // Reset to the first theme
+            renderQuiz();
+        }
 
         function renderQuiz() {
             const quizContainer = document.getElementById('quiz');
             quizContainer.innerHTML = '';
 
+            const themeKeys = Object.keys(themes[currentLanguage]);
             const themeName = themeKeys[currentThemeIndex];
-            const questions = themes[themeName];
+            const questions = themes[currentLanguage][themeName];
 
             const themeTitle = document.createElement('h2');
             themeTitle.textContent = themeName;
@@ -179,14 +220,9 @@
         }
 
         function navigate(direction) {
-            currentThemeIndex += direction;
-
-            if (currentThemeIndex < 0) {
-                currentThemeIndex = themeKeys.length - 1;
-            } else if (currentThemeIndex >= themeKeys.length) {
-                currentThemeIndex = 0;
-            }
-
+            const themeKeys = Object.keys(themes[currentLanguage]);
+            const themeCount = themeKeys.length;
+            currentThemeIndex = (currentThemeIndex + direction + themeCount) % themeCount;
             renderQuiz();
         }
 
